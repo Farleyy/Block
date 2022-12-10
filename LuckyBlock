@@ -1,0 +1,114 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local input = Instance.new("TextBox")
+local Output = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Main.BackgroundTransparency = 0.990
+Main.Position = UDim2.new(0.00385852065, 0, 0.912202358, 0)
+Main.Size = UDim2.new(0, 276, 0, 53)
+
+input.Name = "input"
+input.Parent = Main
+input.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+input.Size = UDim2.new(0, 276, 0, 27)
+input.Font = Enum.Font.Gotham
+input.PlaceholderText = "--Commands Here"
+input.Text = ""
+input.TextColor3 = Color3.fromRGB(255, 255, 255)
+input.TextSize = 20.000
+input.TextXAlignment = Enum.TextXAlignment.Left
+
+Output.Name = "Output"
+Output.Parent = Main
+Output.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Output.BackgroundTransparency = 1.000
+Output.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Output.Position = UDim2.new(0, 0, 0.641509414, 0)
+Output.Size = UDim2.new(0, 276, 0, 6)
+Output.Font = Enum.Font.SourceSans
+Output.Text = ""
+Output.TextColor3 = Color3.fromRGB(255, 255, 255)
+Output.TextSize = 20.000
+
+-- Scripts:
+
+local function VDPN_fake_script() -- ScreenGui.LocalScript 
+	local script = Instance.new('LocalScript', ScreenGui)
+
+	local UI = script.Parent
+	local GUI = script.Parent.Main
+	local Input = GUI.input
+	local Output = GUI.Output
+	
+	game.Players.LocalPlayer:GetMouse().KeyDown:Connect(function(key)
+		if key == ";" then
+			Input:CaptureFocus()
+			
+			spawn(function()
+				Input.Text = ""
+			end)
+		end
+	end)
+	Input.FocusLost:Connect(function(enterPressed)
+		if enterPressed then
+			game.ReplicatedStorage.Events.BackboneEvents.ButtonPress:FireServer(Input.Text)
+		end
+	end)
+end
+coroutine.wrap(VDPN_fake_script)()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local function a()
+local fling = Instance.new("BodyVelocity")
+			local push = Instance.new("BodyForce")
+			fling.Parent = game.Players.LocalPlayer.Character.Humanoid.HumanoidRootPart
+			fling.P = math.huge
+			fling.Velocity = Vector3.new(math.huge, math.huge, math.huge)
+			fling.Velocity += Vector3.new(math.huge, math.huge, math.huge)
+			push.Parent = game.Players:FindFirstChild(args[2]).Character.HumanoidRootPart
+			push.Force = Vector3.new(999999, 999999, 999999)
+
+end
+
+
+wait(1)
+a()
+
+
+
+
